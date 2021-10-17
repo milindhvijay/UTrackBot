@@ -18,3 +18,7 @@ def modify_shipment(message):
 #Help_Command
 def help(message):
     bot.send_message(message.chat.id, "⚙️ Commands :\n\n• /list - Show the list of shipments you are tracking.\n• /track - Track a new shipment.\n• /remove - Remove a shipment from database.\n• /modify - Modify a shipment.\n• /cancel - Cancel the current command.")
+
+#Cancel_Command
+def cancel(message):
+    bot.send_message(message.chat.id, "👍 Cancelled. If you are having any issues, take a look at /help")    
