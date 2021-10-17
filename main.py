@@ -42,11 +42,26 @@ def remove_shipment(message):
     bot.send_message(message.chat.id, "You are not tracking any shipments. Start by using the command /track")
 
 
+#ModifyShipments
+
+@bot.message_handler(commands=['modify'])
+def modify_shipment(message):
+    bot.send_message(message.chat.id, "You are not tracking any shipments. Start by using the command /track")
+
+
 #Help command
 
 @bot.message_handler(commands=['help', 'Help'])
 def help(message):
     bot.send_message(message.chat.id, "⚙️ Commands :")
+
+
+#CancelCommand
+
+@bot.message_handler(commands=['cancel'])
+def cancel(message):
+    bot.send_message(message.chat.id, "👍 Cancelled. If you are having any issues, take a look at the help page.")
+
 
 
 
