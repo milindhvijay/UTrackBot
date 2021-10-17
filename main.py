@@ -29,6 +29,19 @@ def trackid_handler(message):
         bot.send_message(message.chat.id, "Tracking number cannot be longer than 30 characters. Try again!") 
 
 
+#ListShipments
+
+@bot.message_handler(commands=['list'])
+def list_shipment(message):
+    bot.send_message(message.chat.id, "You are not tracking any shipments. Start by using the command /track")
+
+#RemoveShipments
+
+@bot.message_handler(commands=['remove'])
+def remove_shipment(message):
+    bot.send_message(message.chat.id, "You are not tracking any shipments. Start by using the command /track")
+
+
 #Help command
 
 @bot.message_handler(commands=['help', 'Help'])
