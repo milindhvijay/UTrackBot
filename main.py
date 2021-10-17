@@ -19,13 +19,13 @@ bot = telebot.TeleBot(API_KEY)
 @bot.message_handler(commands=['start'])
 def greet(message):
     markup = types.ReplyKeyboardMarkup(row_width=3)
-    itembtn1 = types.KeyboardButton('➕ Track',)
-    itembtn2 = types.KeyboardButton('📃 List')
-    itembtn3 = types.KeyboardButton('❓ Help')
-    itembtn4 = types.KeyboardButton('✏️ Modify')
-    itembtn5 = types.KeyboardButton('🗑️ Remove')
+    trackbtn = types.KeyboardButton('➕ Track',)
+    listbtn = types.KeyboardButton('📃 List')
+    helpbtn = types.KeyboardButton('❓ Help')
+    modifybtn = types.KeyboardButton('✏️ Modify')
+    removebtn = types.KeyboardButton('🗑️ Remove')
     itembtn6 = types.KeyboardButton('Unnamed')
-    markup.add(itembtn1, itembtn2, itembtn3,itembtn4,itembtn5,itembtn6)
+    markup.add(trackbtn, listbtn, helpbtn,modifybtn,removebtn,itembtn6)
     bot.send_message(message.chat.id, "👋 Hi " + message.from_user.first_name + ", my name is UTrackBot and I can help you keep track of your shipments.")
     bot.send_message(message.chat.id, "✅ What you need to know:\n\n1️⃣ This service is free and unlimited.\n\n2️⃣ To add a new shipment, tap ➕ *Track* down here, or send the tracking number directly.\n\n3️⃣ For help if you face a problem, tap ❓ *Help*.", parse_mode='Markdown', reply_markup=markup)
     #bot.send_message(message.from_user.id, "*hello*", parse_mode='Markdown')    
@@ -56,7 +56,7 @@ def button_menu(message):
     
     #help_option
     elif 'help' in text:
-        bot.send_message(message.chat.id, "⚙️ Commands :")
+        help(message)
     
     else:
         bot.send_message(message.chat.id, "❗ I don't understand. Please try again!")

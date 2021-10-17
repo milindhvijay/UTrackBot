@@ -3,18 +3,18 @@ import telebot
 API_KEY = '2074114916:AAGIMQ3J4whzLqmMMiTJqLtSNrgwrQdZ9_w'
 bot = telebot.TeleBot(API_KEY)
 
-#ListShipments
+#List_Shipments
 def list_shipment(message):    
     bot.send_message(message.chat.id, "You are not tracking any shipments. Start by using the command /track")   
     
-#RemoveShipments
+#Remove_Shipments
 def remove_shipment(message):
     bot.send_message(message.chat.id, "You are not tracking any shipments. Start by using the command /track")
     
-#ModifyShipments
+#Modify_Shipments
 def modify_shipment(message):
     bot.send_message(message.chat.id, "You are not tracking any shipments. Start by using the command /track")
     
-#Help command
+#Help_Command
 def help(message):
-    bot.send_message(message.chat.id, "⚙️ Commands :")
+    bot.send_message(message.chat.id, "⚙️ Commands :\n\n• /list - Show the list of shipments you are tracking.\n• /track - Track a new shipment.\n• /remove - Remove a shipment from database.\n• /modify - Modify a shipment.\n• /cancel - Cancel the current command.")
