@@ -1,18 +1,32 @@
 import os
 import types
 import telebot
-from telebot.types import Update
+from telebot import types
 
 API_KEY = '2074114916:AAGIMQ3J4whzLqmMMiTJqLtSNrgwrQdZ9_w'
 bot = telebot.TeleBot(API_KEY)
+
+#markup = types.ReplyKeyboardMarkup(row_width=2)
+#itembtn1 = types.KeyboardButton('a')
+#itembtn2 = types.KeyboardButton('v')
+#itembtn3 = types.KeyboardButton('d')
+#markup.add(itembtn1, itembtn2, itembtn3)
 
 
 #Greeting Message
 
 @bot.message_handler(commands=["start","hello"])
 def greet(message):
+    markup = types.ReplyKeyboardMarkup(row_width=3)
+    itembtn1 = types.KeyboardButton('➕ Track')
+    itembtn2 = types.KeyboardButton('📃 List')
+    itembtn3 = types.KeyboardButton('❓ Help')
+    itembtn4 = types.KeyboardButton('✏️ Modify')
+    itembtn5 = types.KeyboardButton('🗑️ Remove')
+    itembtn6 = types.KeyboardButton('Unnamed')
+    markup.add(itembtn1, itembtn2, itembtn3,itembtn4,itembtn5,itembtn6)
     bot.send_message(message.chat.id, "👋 Hi " + message.from_user.first_name + ", my name is UTrackBot and I can help you keep track of your shipments.")
-    bot.send_message(message.chat.id, "✅ What you need to know:\n\n1️⃣ This service is free and unlimited.\n\n2️⃣ To add a new shipment, tap ➕ *Track* down here, or send the tracking number directly.\n\n3️⃣ For help if you face a problem, tap ❓ *Help*.", parse_mode='Markdown')
+    bot.send_message(message.chat.id, "✅ What you need to know:\n\n1️⃣ This service is free and unlimited.\n\n2️⃣ To add a new shipment, tap ➕ *Track* down here, or send the tracking number directly.\n\n3️⃣ For help if you face a problem, tap ❓ *Help*.", parse_mode='Markdown', reply_markup=markup)
     #bot.send_message(message.from_user.id, "*hello*", parse_mode='Markdown')    
     
 
@@ -61,6 +75,8 @@ def help(message):
 @bot.message_handler(commands=['cancel'])
 def cancel(message):
     bot.send_message(message.chat.id, "👍 Cancelled. If you are having any issues, take a look at the help page.")
+
+
 
 
 
