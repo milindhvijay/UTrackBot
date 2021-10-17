@@ -39,8 +39,9 @@ def button_menu(message):
 
     #track_option
     if 'track' in text:
-        track_id = bot.send_message(message.chat.id, "📦 I'm ready. Enter your tracking number :".format(message.from_user, bot.get_me()))
+        track_id = bot.send_message(message.chat.id, "📦 I'm ready. Enter your tracking number :\n\n/cancel".format(message.from_user, bot.get_me()))
         bot.register_next_step_handler(track_id, trackid_handler)
+        
 
     #list_option
     elif 'list' in text:
@@ -58,20 +59,23 @@ def button_menu(message):
     elif 'help' in text:
         help(message)
     
+    #cancel_command
+    #elif 'cancel' in text:
+    #    cancel(message)
+    
     else:
         bot.send_message(message.chat.id, "❗ I don't understand. Please try again!")
 
 #Tracking_number_exception
 def trackid_handler(message):
     track_id = message.text
-    if len(track_id) > 30:
+    if 'cancel' in track_id:
+        cancel(message)
+    elif len(track_id) > 30:
         bot.send_message(message.chat.id, "Tracking number cannot be longer than 30 characters. Try again!") 
 
-#CancelCommand
 
-@bot.message_handler(commands=['cancel'])
-def cancel(message):
-    bot.send_message(message.chat.id, "👍 Cancelled. If you are having any issues, take a look at the help page.")
+
 
 
 '''
@@ -85,10 +89,7 @@ def name_handler(message):
     num1 = message.text
     bot.send_message(message.chat.id, f"Your name is {num1}")
     bot.send_message(message.chat.id, "Sum is " + str(sum))
-'''    
-
-  
-  
+'''
 
 
 bot.polling()
