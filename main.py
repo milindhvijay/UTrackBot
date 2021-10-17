@@ -15,10 +15,10 @@ bot = telebot.TeleBot(API_KEY)
 
 #Greeting Message
 
-@bot.message_handler(commands=["start","hello"])
+@bot.message_handler(commands=['start'])
 def greet(message):
     markup = types.ReplyKeyboardMarkup(row_width=3)
-    itembtn1 = types.KeyboardButton('➕ Track')
+    itembtn1 = types.KeyboardButton('➕ Track',)
     itembtn2 = types.KeyboardButton('📃 List')
     itembtn3 = types.KeyboardButton('❓ Help')
     itembtn4 = types.KeyboardButton('✏️ Modify')
@@ -32,43 +32,37 @@ def greet(message):
 
 #Tracking
 
-@bot.message_handler(commands=['track', 'Track'])
-def track(message):
-    track_id = bot.send_message(message.chat.id, "📦 I'm ready. Enter your tracking number :".format(message.from_user, bot.get_me()))
-    bot.register_next_step_handler(track_id, trackid_handler)
+@bot.message_handler(content_types=['text'])
+def button_menu(message):
+    text = message.text.lower()
+    #track_option
+    if 'track' in text:
+        track_id = bot.send_message(message.chat.id, "📦 I'm ready. Enter your tracking number :".format(message.from_user, bot.get_me()))
+        bot.register_next_step_handler(track_id, trackid_handler)
+
+    #list_option
+    if 'list' in text:
+        bot.send_message(message.chat.id, "You are not tracking any shipments. Start by using the command /track")      
+
+    #remove_option
+    if 'remove' in text:
+        bot.send_message(message.chat.id, "You are not tracking any shipments. Start by using the command /track")    
+    
+    #modify_option
+    if 'modify' in text:
+        bot.send_message(message.chat.id, "You are not tracking any shipments. Start by using the command /track")
+    
+    #help_option
+    if 'help' in text:
+        bot.send_message(message.chat.id, "⚙️ Commands :")
+    
+    else:
+        bot.send_message(message.chat.id, "❗ I don't understand. Please try again!")
 
 def trackid_handler(message):
     track_id = message.text
     if len(track_id) > 30:
         bot.send_message(message.chat.id, "Tracking number cannot be longer than 30 characters. Try again!") 
-
-
-#ListShipments
-
-@bot.message_handler(commands=['list'])
-def list_shipment(message):
-    bot.send_message(message.chat.id, "You are not tracking any shipments. Start by using the command /track")
-
-#RemoveShipments
-
-@bot.message_handler(commands=['remove'])
-def remove_shipment(message):
-    bot.send_message(message.chat.id, "You are not tracking any shipments. Start by using the command /track")
-
-
-#ModifyShipments
-
-@bot.message_handler(commands=['modify'])
-def modify_shipment(message):
-    bot.send_message(message.chat.id, "You are not tracking any shipments. Start by using the command /track")
-
-
-#Help command
-
-@bot.message_handler(commands=['help', 'Help'])
-def help(message):
-    bot.send_message(message.chat.id, "⚙️ Commands :")
-
 
 #CancelCommand
 
@@ -77,11 +71,51 @@ def cancel(message):
     bot.send_message(message.chat.id, "👍 Cancelled. If you are having any issues, take a look at the help page.")
 
 
+'''
+#ListShipments
+
+#@bot.message_handler(content_types=['text'])
+#def list_shipment(message):
+    text = message.text.lower()
+    if 'list' in text:
+        bot.send_message(message.chat.id, "You are not tracking any shipments. Start by using the command /track")
+        
+    #else:
+        #bot.send_message(message.chat.id, "❗ I don't understand. Please try again!")
+
+#RemoveShipments
+
+@bot.message_handler(content_types=['text'])
+def remove_shipment(message):
+    text = message.text.lower()
+    if 'remove' in text:
+        bot.send_message(message.chat.id, "You are not tracking any shipments. Start by using the command /track")
+    #else:
+        #bot.send_message(message.chat.id, "❗ I don't understand. Please try again!")
+
+#ModifyShipments
+
+@bot.message_handler(content_types=['text'])
+def modify_shipment(message):
+    text = message.text.lower()
+    if 'modify' in text:
+        bot.send_message(message.chat.id, "You are not tracking any shipments. Start by using the command /track")
+    #else:
+        #bot.send_message(message.chat.id, "❗ I don't understand. Please try again!")
+
+#Help command
+
+@bot.message_handler(content_types=['text'])
+def help(message):
+    text = message.text.lower()
+    if 'help' in text:
+        bot.send_message(message.chat.id, "⚙️ Commands :")
+        
+    #else:
+        #bot.send_message(message.chat.id, "❗ I don't understand. Please try again!")
 
 
-
-
-""" @bot.message_handler(content_types=["text"])
+@bot.message_handler(content_types=["text"])
 def add(message):
   sent_mg = bot.send_message(message.chat.id, "Enter first number")
   bot.register_next_step_handler(sent_sg, name_handler)
@@ -90,8 +124,9 @@ def add(message):
 def name_handler(message):
     num1 = message.text
     bot.send_message(message.chat.id, f"Your name is {num1}")
-    bot.send_message(message.chat.id, "Sum is " + str(sum)) """
+    bot.send_message(message.chat.id, "Sum is " + str(sum))
 
+'''    
 
   
   
