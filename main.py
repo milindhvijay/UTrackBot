@@ -3,8 +3,12 @@ import types
 import telebot
 from telebot import types
 from buttonmenu import *
+from dotenv import load_dotenv
 
-API_KEY = '2074114916:AAGIMQ3J4whzLqmMMiTJqLtSNrgwrQdZ9_w'
+load_dotenv()
+
+API_KEY = os.getenv('API_KEY')
+
 bot = telebot.TeleBot(API_KEY)
 
 #markup = types.ReplyKeyboardMarkup(row_width=2)

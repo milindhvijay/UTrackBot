@@ -1,6 +1,11 @@
+import os
 import telebot
+from dotenv import load_dotenv
 
-API_KEY = '2074114916:AAGIMQ3J4whzLqmMMiTJqLtSNrgwrQdZ9_w'
+load_dotenv()
+
+API_KEY = os.getenv('API_KEY')
+
 bot = telebot.TeleBot(API_KEY)
 
 #List_Shipments
