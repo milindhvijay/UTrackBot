@@ -22,7 +22,7 @@ bot = telebot.TeleBot(API_KEY)
 
 @bot.message_handler(commands=['start'])
 def greet(message):
-    markup = types.ReplyKeyboardMarkup(row_width=3)
+    markup = types.ReplyKeyboardMarkup(row_width=3, resize_keyboard=True)
     trackbtn = types.KeyboardButton('➕ Track',)
     listbtn = types.KeyboardButton('📃 List')
     helpbtn = types.KeyboardButton('❓ Help')
