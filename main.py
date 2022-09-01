@@ -55,6 +55,10 @@ def button_menu(message):
     #remove_option
     elif 'remove' in text:
         remove_shipment(message)
+
+    #share_option
+    elif 'share' in text:
+        share_shipment(message)
     
     #modify_option
     elif 'modify' in text:
