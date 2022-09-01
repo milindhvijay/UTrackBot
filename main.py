@@ -22,14 +22,15 @@ bot = telebot.TeleBot(API_KEY)
 
 @bot.message_handler(commands=['start'])
 def greet(message):
-    markup = types.ReplyKeyboardMarkup(row_width=3)
+    markup = types.ReplyKeyboardMarkup(row_width=3, resize_keyboard=True)
     trackbtn = types.KeyboardButton('➕ Track',)
     listbtn = types.KeyboardButton('📃 List')
     helpbtn = types.KeyboardButton('❓ Help')
+    sharebtn = types.KeyboardButton('📤 Share')
     modifybtn = types.KeyboardButton('✏️ Modify')
     removebtn = types.KeyboardButton('🗑️ Remove')
-    itembtn6 = types.KeyboardButton('Unnamed')
-    markup.add(trackbtn, listbtn, helpbtn,modifybtn,removebtn,itembtn6)
+    
+    markup.add(trackbtn, listbtn, helpbtn, sharebtn, modifybtn,removebtn)
     bot.send_message(message.chat.id, "👋 Hi " + message.from_user.first_name + ", my name is UTrackBot and I can help you keep track of your shipments.")
     bot.send_message(message.chat.id, "✅ What you need to know:\n\n1️⃣ This service is free and unlimited.\n\n2️⃣ To add a new shipment, tap ➕ *Track* down here, or send the tracking number directly.\n\n3️⃣ For help if you face a problem, tap ❓ *Help*.", parse_mode='Markdown', reply_markup=markup)
     #bot.send_message(message.from_user.id, "*hello*", parse_mode='Markdown')    
@@ -54,6 +55,10 @@ def button_menu(message):
     #remove_option
     elif 'remove' in text:
         remove_shipment(message)
+
+    #share_option
+    elif 'share' in text:
+        share_shipment(message)
     
     #modify_option
     elif 'modify' in text:

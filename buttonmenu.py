@@ -15,6 +15,10 @@ def list_shipment(message):
 #Remove_Shipments
 def remove_shipment(message):
     bot.send_message(message.chat.id, "You are not tracking any shipments. Start by using the command /track")
+
+#Share_Shipment
+def share_shipment(message):
+    bot.send_message(message.chat.id, "You are not tracking any shipments. Start by using the command /track")
     
 #Modify_Shipments
 def modify_shipment(message):
