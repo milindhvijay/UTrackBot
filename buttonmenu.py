@@ -4,9 +4,9 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-API_KEY = os.getenv('API_KEY')
+BOT_API_KEY = os.getenv('BOT_API_KEY')
 
-bot = telebot.TeleBot(API_KEY)
+bot = telebot.TeleBot(BOT_API_KEY)
 
 #List_Shipments
 def list_shipment(message):    
