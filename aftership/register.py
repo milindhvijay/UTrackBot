@@ -16,12 +16,13 @@ json_data = {
     },
 }
 
-response = requests.post('https://api.aftership.com/v4/trackings', headers=headers, json=json_data)
+response = requests.post(
+    'https://api.aftership.com/v4/trackings', headers=headers, json=json_data)
 
-#print(response.text)
+# print(response.text)
 
 data = response.json()
 
-id=data['data']['tracking']['id']
+id = data['data']['tracking']['id']
 
 print(id)
