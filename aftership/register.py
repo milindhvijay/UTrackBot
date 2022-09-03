@@ -21,8 +21,8 @@ response = requests.post(
 
 # print(response.text)
 
-data = response.json()
+register_data = response.json()
 
-id = data['data']['tracking']['id']
+tracking_id = register_data['data']['tracking']['id']
 
-print(id)
+# print(tracking_id)

@@ -1,10 +1,14 @@
 import os
 import requests
 from dotenv import load_dotenv
+from register import tracking_id
 
 load_dotenv()
 
+
 API_KEY = os.getenv('AFTERSHIP_API_KEY')
+
+id = tracking_id
 
 headers = {
     'Content-Type': 'application/json',
@@ -12,12 +16,13 @@ headers = {
 }
 
 response = requests.get(
-    'https://api.aftership.com/v4/last_checkpoint/utxea845839f9l7lgyn6y028', headers=headers)
+    'https://api.aftership.com/v4/last_checkpoint/%s' % id, headers=headers)
 
-data = response.json()
+last_checkpoint_data = response.json()
 
-city = data['data']['checkpoint']['city']
-message = data['data']['checkpoint']['message']
+city = last_checkpoint_data['data']['checkpoint']['city']
+message = last_checkpoint_data['data']['checkpoint']['message']
 
-print(city)
+
 print(message)
+print(city)
