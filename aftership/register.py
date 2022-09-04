@@ -1,4 +1,3 @@
-from csv import register_dialect
 import os
 import requests
 from dotenv import load_dotenv
