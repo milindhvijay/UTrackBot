@@ -4,8 +4,7 @@ import telebot
 from telebot import types
 from buttonmenu import *
 from dotenv import load_dotenv
-from tracking import *
-from aftership.register import register_func
+from aftership.lastcheckpoint import last_checkpoint_func
 
 load_dotenv()
 
@@ -47,7 +46,7 @@ def button_menu(message):
 
     # track_option
     if 'track' in text:
-        #tracking_shipment(message)
+        # tracking_shipment(message)
         track_shipment = bot.send_message(
             message.chat.id, "📦 I'm ready. Enter your tracking number :\n\n/cancel".format(message.from_user, bot.get_me()))
         bot.register_next_step_handler(track_shipment, trackid_handler)
@@ -84,18 +83,17 @@ def button_menu(message):
 
 
 def trackid_handler(message):
-    tracking_number = message.text
-    if 'cancel' in tracking_number:
+    track_number = message.text
+    if 'cancel' in track_number:
         cancel(message)
-    elif len(tracking_number) > 30:
+    elif len(track_number) > 30:
         bot.send_message(
             message.chat.id, "❗Tracking number cannot be longer than 30 characters. Try again!")
     else:
         bot.send_message(
-            message.chat.id, register_func(tracking_id=tracking_number))
-
-
-        
+            message.chat.id, last_checkpoint_func(
+                message=message, city=message)
+        )
 
 
 '''
