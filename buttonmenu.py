@@ -56,6 +56,3 @@ def help(message):
 def cancel(message):
     bot.send_message(
         message.chat.id, "👍 Cancelled. If you are having any issues, take a look at /help")
-
-
-
