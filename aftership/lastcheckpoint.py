@@ -1,16 +1,17 @@
 import os
 import requests
 from dotenv import load_dotenv
-from register import register_func
+from aftership.register import register_func
 
 load_dotenv()
 
 
 API_KEY = os.getenv('AFTERSHIP_API_KEY')
 
-id = tracking_id
+id = register_func(tracking_id='')
 
-def last_checkpoint_func(message):
+
+def last_checkpoint_func(message, city):
     headers = {
         'Content-Type': 'application/json',
         'as-api-key': API_KEY,
@@ -21,10 +22,11 @@ def last_checkpoint_func(message):
 
     last_checkpoint_data = response.json()
 
-    city = last_checkpoint_data['data']['checkpoint']['city']
     message = last_checkpoint_data['data']['checkpoint']['message']
+    city = last_checkpoint_data['data']['checkpoint']['city']
 
-    return message
+    return message, city
+
 
 """headers = {
     'Content-Type': 'application/json',
