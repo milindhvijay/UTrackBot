@@ -11,6 +11,7 @@ BOT_API_KEY = os.getenv('BOT_API_KEY')
 
 bot = telebot.TeleBot(BOT_API_KEY)
 
+
 def greetings():
     @bot.message_handler(commands=['start'])
     def greet(message):
@@ -24,5 +25,5 @@ def greetings():
 
         markup.add(trackbtn, listbtn, helpbtn, sharebtn, modifybtn, removebtn)
         bot.send_message(message.chat.id, "👋 Hi " + message.from_user.first_name +
-                     ", my name is UTrackBot and I can help you keep track of your shipments.")
+                         ", my name is UTrackBot and I can help you keep track of your shipments.")
         bot.send_message(message.chat.id, "✅ What you need to know:\n\n1️⃣ This service is free and unlimited.\n\n2️⃣ To add a new shipment, tap ➕ *Track* down here, or send the tracking number directly.\n\n3️⃣ For help if you face a problem, tap ❓ *Help*.", parse_mode='Markdown', reply_markup=markup)
