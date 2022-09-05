@@ -11,7 +11,7 @@ API_KEY = os.getenv('AFTERSHIP_API_KEY')
 id = register_func(tracking_id='')
 
 
-def last_checkpoint_func(message, city):
+def last_checkpoint_func(status, city):
     headers = {
         'Content-Type': 'application/json',
         'as-api-key': API_KEY,
@@ -22,7 +22,7 @@ def last_checkpoint_func(message, city):
 
     last_checkpoint_data = response.json()
 
-    message = last_checkpoint_data['data']['checkpoint']['message']
+    status = last_checkpoint_data['data']['checkpoint']['message']
     city = last_checkpoint_data['data']['checkpoint']['city']
 
-    return message, city
+    return status, city
