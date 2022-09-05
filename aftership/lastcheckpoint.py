@@ -8,7 +8,7 @@ load_dotenv()
 
 API_KEY = os.getenv('AFTERSHIP_API_KEY')
 
-id = register_func(tracking_id='')
+id = register_func(tracking_id = '')
 
 
 def last_checkpoint_func(message, city):
