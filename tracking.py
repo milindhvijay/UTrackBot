@@ -53,7 +53,6 @@ def trackings():
 
     # Tracking_number_exception
 
-
     def trackid_handler(message):
         track_number = message.text
         if 'cancel' in track_number:
@@ -62,9 +61,8 @@ def trackings():
             bot.send_message(
                 message.chat.id, "❗Tracking number cannot be longer than 30 characters. Try again!")
         else:
-            bot.send_message(
-                message.chat.id, last_checkpoint_func(
-                    message=message, city=message)
+            bot.send_message(message.chat.id, last_checkpoint_func(
+                message=message, city=message)
             )
-    
+
     bot.polling()
